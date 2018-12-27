@@ -8,7 +8,7 @@ class CakeEater {
   }
 
   draw() {
-    fill(100,100,200);
+    fill(100, 100, 200);
     rect(this.x, this.y, tilesize, tilesize);
   }
 
