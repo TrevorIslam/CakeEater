@@ -41,4 +41,8 @@ class Tile {
       }
     }
   }
+
+  static placeFree(col, row) {
+    
+  }
 }
