@@ -43,6 +43,31 @@ class Tile {
   }
 
   static placeFree(col, row) {
-    
+    var index = Tile.getIndex(col, row);
+
+    var numCols = width / tilesize;
+    var numRows = height / tilesize;
+
+    if (row >= numRows || row < 0 || col >= numCols || col < 0) {
+      return false;
+    }
+
+    if (tiles[index] instanceof Wall) {
+      return false;
+    }
+
+    if (tiles[index] instanceof Crumb) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static eat (col, row) {
+   var index = Tile.getIndex(col, row);
+
+   if (!(tiles[index] instanceof Crumb)) {
+     tiles[index] = new Crumb (col, row);
+    }
   }
 }
