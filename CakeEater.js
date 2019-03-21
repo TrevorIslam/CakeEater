@@ -5,11 +5,12 @@ class CakeEater {
 
     this.xvel = 0;
     this.yvel = 0;
+
+    this.sprite = new Sprite(cakeEaterImg, 2, 30, 32, 32);
   }
 
   draw() {
-    fill(100, 100, 200);
-    rect(this.x, this.y, tilesize, tilesize);
+    this.sprite.draw(this.x, this.y, tilesize, tilesize);
   }
 
   move() {
@@ -32,18 +33,28 @@ class CakeEater {
     var speed = 2;
     var myCol = this.x / tilesize;
     var myRow = this.y / tilesize;
+
     if (register[RIGHT_ARROW] && Tile.placeFree(myCol + 1, myRow)) {
       this.xvel = speed;
       this.yvel = 0;
+      this.sprite.animationNumber = 3;
     } else if (register[LEFT_ARROW] && Tile.placeFree(myCol - 1, myRow)) {
       this.xvel = -speed;
       this.yvel = 0;
+      this.sprite.animationNumber = 0;
     } else if (register[UP_ARROW] && Tile.placeFree(myCol, myRow - 1)) {
       this.xvel = 0;
       this.yvel = -speed;
+      this.sprite.animationNumber = 2;
     } else if (register[DOWN_ARROW] && Tile.placeFree(myCol, myRow + 1)) {
       this.xvel = 0;
       this.yvel = speed;
+      this.sprite.animationNumber = 1;
+    }
+    if (this.xvel == 0 && this.yvel == 0) {
+      this.sprite.frameSpeed = 30;
+    } else {
+      this.sprite.frameSpeed = 10;
     }
   }
 

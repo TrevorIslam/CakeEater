@@ -5,14 +5,24 @@ class Tile {
   constructor(col, row) {
     this.col = col;
     this.row = row;
-    this.color = color(160,160,180);
+    this.sprite = new Sprite(cakeTileImage);
+    this.sideSprite = new Sprite(eatenCakeTileImg);
   }
 
   draw() {
     let x = this.col * tilesize;
     let y = this.row * tilesize;
-    fill(this.color);
-    rect(x,y,tilesize,tilesize);
+
+    let index = Tile.getIndex(this.col, this.row + 1);
+
+    let belowTile = tiles[index];
+
+    if (this.sideSprite && belowTile && belowTile instanceof Crumb) {
+      this.sideSprite.draw(x, y, tilesize, tilesize)
+    } else {
+      this.sprite.draw(x, y, tilesize, tilesize);
+    }
+
   }
 
   static getIndex(col, row) {

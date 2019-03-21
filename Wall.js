@@ -1,6 +1,8 @@
 class Wall extends Tile {
   constructor(col, row) {
     super(col, row);
-    this.color = color(120,120,140);
+    this.sprite = new Sprite(candleImg, 2, 30);
+    this.sideSprite = new Sprite(eatenCandleImg, 2, 30);
+    
   }
 }
