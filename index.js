@@ -1,19 +1,11 @@
-var level = {
-  size: [5, 6],
-  tiles: [
-    0, 0, 0, 0, 0,
-    0, 1, 0, 1, 0,
-    0, 1, 0, 1, 0,
-    0, 0, 0, 0, 0
-  ]
-};
+var levelNum = 0;
 var tiles = [];
 var cakeEater;
 
 function setup() {
     let canvas = createCanvas(500, 500);
     canvas.parent("myCanvas");
-    Tile.createGrid(level);
+    Tile.createGrid(levels[levelNum]);
     cakeEater = null;
 }
 
@@ -28,8 +20,13 @@ function draw() {
   }
   if (cakeEater) {
     cakeEater.update();
+    checkComplete();
   } else {
     placeEater();
+  }
+
+  if (register[82]) {
+    reset();
   }
 }
 
@@ -45,6 +42,24 @@ function placeEater() {
     stroke(255,255,255);
     noFill();
     rect(x, y, tilesize, tilesize);
-  }
 
+    if (register["mouseleft"]) {
+      cakeEater = new CakeEater(x, y);
+    }
+  }
+}
+
+function checkComplete() {
+  var uneaten = tiles.filter(tile => Tile.placeFree(tile.col, tile.row));
+
+  if (uneaten.length <= 0) {
+    levelNum++;
+    reset();
+  }
+}
+
+function reset () {
+  tiles = [];
+  cakeEater = null;
+  Tile.createGrid(levels[levelNum])
 }
