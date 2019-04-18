@@ -30,7 +30,7 @@ class CakeEater {
   }
 
   setVelocity() {
-    var speed = 2;
+    var speed = 3.125;
     var myCol = this.x / tilesize;
     var myRow = this.y / tilesize;
 
