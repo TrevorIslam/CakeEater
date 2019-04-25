@@ -2,6 +2,7 @@ var cakeTileImage;
 var eatenCakeTileImg;
 var crumbsImg;
 var candleImg;
+var candleEaterImg;
 var eatenCandleImg;
 var cakeEaterImg;
 function preload() {
@@ -11,4 +12,5 @@ function preload() {
   candleImg = loadImage("CakeEaterImages/candle.png");
   eatenCandleImg = loadImage("CakeEaterImages/candleEaten.png");
   cakeEaterImg = loadImage("CakeEaterImages/cakeEater.png");
+  candleEaterImg = loadImage("CakeEaterImages/powerup.png")
 }

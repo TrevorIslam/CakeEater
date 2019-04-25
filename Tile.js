@@ -17,7 +17,7 @@ class Tile {
 
     let belowTile = tiles[index];
 
-    if (this.sideSprite && belowTile && belowTile instanceof Crumb) {
+    if (this.sideSprite && belowTile instanceof Crumb) {
       this.sideSprite.draw(x, y, tilesize, tilesize)
     } else {
       this.sprite.draw(x, y, tilesize, tilesize);
@@ -47,7 +47,10 @@ class Tile {
           tiles.push(new Tile(c, r));
         } else if (levelData.tiles[index] === 1) {
           tiles.push(new Wall(c, r));
+        } else if (levelData.tiles[index] === 2) {
+          tiles.push(new CandleEater(c, r));
         }
+
       }
     }
   }

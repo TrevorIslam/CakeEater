@@ -1,4 +1,4 @@
-var levelNum = 7;
+var levelNum = 0;
 var tiles = [];
 var cakeEater;
 
