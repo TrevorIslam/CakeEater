@@ -49,8 +49,9 @@ class Tile {
           tiles.push(new Wall(c, r));
         } else if (levelData.tiles[index] === 2) {
           tiles.push(new CandleEater(c, r));
+        } else if (levelData.tiles[index] === 3) {
+          tiles.push(new Bomb(c, r));
         }
-
       }
     }
   }
@@ -64,9 +65,14 @@ class Tile {
     if (row >= numRows || row < 0 || col >= numCols || col < 0) {
       return false;
     }
-
-    if (tiles[index] instanceof Wall) {
-      return false;
+    if (cakeEater) {
+      if (!cakeEater.hasPowerUp && tiles[index] instanceof Wall) {
+        return false;
+      }
+    } else {
+      if (tiles[index] instanceof Wall) {
+        return false;
+      }
     }
 
     if (tiles[index] instanceof Crumb) {
@@ -77,9 +83,15 @@ class Tile {
   }
 
   static eat (col, row) {
-   var index = Tile.getIndex(col, row);
+    var index = Tile.getIndex(col, row);
 
-   if (!(tiles[index] instanceof Crumb)) {
+    if (tiles[index] instanceof CandleEater) {
+      if (cakeEater) {
+        cakeEater.hasPowerUp = true;
+      }
+    }
+
+    if (!(tiles[index] instanceof Crumb)) {
      tiles[index] = new Crumb (col, row);
     }
   }

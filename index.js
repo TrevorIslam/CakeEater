@@ -43,7 +43,7 @@ function placeEater() {
     noFill();
     rect(x, y, tilesize, tilesize);
 
-    if (register["mouseleft"]) {
+    if (register["mouseleft"] || register[69]) {
       cakeEater = new CakeEater(x, y);
     }
   }

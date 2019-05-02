@@ -37,18 +37,22 @@ class CakeEater {
     if (register[RIGHT_ARROW] && Tile.placeFree(myCol + 1, myRow)) {
       this.xvel = speed;
       this.yvel = 0;
+      this.hasPowerUp = false;
       this.sprite.animationNumber = 3;
     } else if (register[LEFT_ARROW] && Tile.placeFree(myCol - 1, myRow)) {
       this.xvel = -speed;
       this.yvel = 0;
+      this.hasPowerUp = false;
       this.sprite.animationNumber = 0;
     } else if (register[UP_ARROW] && Tile.placeFree(myCol, myRow - 1)) {
       this.xvel = 0;
       this.yvel = -speed;
+      this.hasPowerUp = false;
       this.sprite.animationNumber = 2;
     } else if (register[DOWN_ARROW] && Tile.placeFree(myCol, myRow + 1)) {
       this.xvel = 0;
       this.yvel = speed;
+      this.hasPowerUp = false;
       this.sprite.animationNumber = 1;
     }
     if (this.xvel == 0 && this.yvel == 0) {

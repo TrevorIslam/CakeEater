@@ -1,7 +1,7 @@
-class CandleEater extends Tile {
+class Bomb extends Tile {
   constructor (col, row) {
     super(col, row)
-    this.sprite = new Sprite(candleEaterImg, 1, 0, 200, 200);
+    this.sprite = new Sprite(bombImg, 1, 0, 320, 320);
     this.sideSprite = null;
   }
   draw () {
