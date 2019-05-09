@@ -7,6 +7,7 @@ class CakeEater {
     this.yvel = 0;
 
     this.sprite = new Sprite(cakeEaterImg, 2, 30, 32, 32);
+    this.hasPowerUp = false;
   }
 
   draw() {
