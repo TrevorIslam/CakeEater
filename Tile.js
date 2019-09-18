@@ -1,5 +1,7 @@
 var tilesize = 50;
 var waitForResize = false;
+var numRows;
+var numCols;
 
 class Tile {
   constructor(col, row) {
@@ -33,8 +35,8 @@ class Tile {
   }
 
   static createGrid(levelData) {
-    let numCols = levelData.size[0];
-    let numRows = levelData.size[1];
+    numCols = levelData.size[0];
+    numRows = levelData.size[1];
 
     waitForResize = true;
     resizeCanvas(numCols * tilesize, numRows * tilesize);
@@ -88,6 +90,19 @@ class Tile {
     if (tiles[index] instanceof CandleEater) {
       if (cakeEater) {
         cakeEater.hasPowerUp = true;
+      }
+    }
+
+    if (tiles[index] instanceof Bomb) {
+      if (cakeEater) {
+        tiles[index - numRows - 1] = new Crumb (col - 1, row - 1);
+        tiles[index - numRows]     = new Crumb (col    , row - 1);
+        tiles[index - numRows + 1]     = new Crumb (col + 1, row - 1);
+        tiles[index - 1]           = new Crumb (col - 1, row    );
+        tiles[index + 1]           = new Crumb (col + 1, row    );
+        tiles[index + numRows - 1] = new Crumb (col - 1, row + 1);
+        tiles[index + numRows]     = new Crumb (col    , row + 1);
+        tiles[index + numRows + 1] = new Crumb (col + 1, row + 1);
       }
     }
 
